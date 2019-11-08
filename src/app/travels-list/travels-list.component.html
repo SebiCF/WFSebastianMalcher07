@@ -1,0 +1,23 @@
+<table class="table table-sm">
+    <thead>
+            <th>Task Name</th>
+            <th>Task date</th>
+            <th></th>
+    </thead>
+    <ng-container *ngFor="let oneTask of taskArray">
+            <tr class="table-dark" *ngIf ="filterCondition(oneTask)">
+                    <td>{{oneTask.taskName}}</td>
+                    <td>{{oneTask.date}}</td>
+                    <td>
+                        <button class="btn btn-info" (click)="travelService.populateForm(oneTask)" >Edit</button>
+                        <button class="btn btn-danger" (click)="onDelete(oneTask.$key)">Delete</button>
+                    </td>
+            </tr>
+    </ng-container>
+</table>
+<div class="alert alert-danger" *ngIf="showDeletedMessage" >Deleted successfully</div>
+<form class="form-inline col-6 mx-auto justify-content-center">
+                <input name="searchInput" class="form-control" placeholder="Search"
+                #searchInput="ngModel" [(ngModel)]="searchText">
+                <button class="btn btn-outline-primary" (click)="searchText=''">x</button>
+        </form>
