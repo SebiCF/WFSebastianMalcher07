@@ -1,16 +1,21 @@
-<table class="table table-sm">
+<h2 class="text-center my-2">Saved travels</h2>
+<table class="table table-sm mt-3">
     <thead>
-            <th>Task Name</th>
-            <th>Task date</th>
+            <th>Destination</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Rating</th>
             <th></th>
     </thead>
-    <ng-container *ngFor="let oneTask of taskArray">
-            <tr class="table-dark" *ngIf ="filterCondition(oneTask)">
-                    <td>{{oneTask.taskName}}</td>
-                    <td>{{oneTask.date}}</td>
+    <ng-container *ngFor="let dest of travelArray">
+            <tr class="table" *ngIf ="filterCondition(dest)">
+                    <td>{{dest.destination}}</td>
+                    <td>{{dest.startDate}}</td>
+                    <td>{{dest.endDate}}</td>
+                    <td>{{dest.rating}}</td>
                     <td>
-                        <button class="btn btn-info" (click)="travelService.populateForm(oneTask)" >Edit</button>
-                        <button class="btn btn-danger" (click)="onDelete(oneTask.$key)">Delete</button>
+                        <button class="btn btn-info" (click)="travelService.populateForm(dest)" >Edit</button>
+                        <button class="btn btn-danger" (click)="onDelete(dest.$key)">Delete</button>
                     </td>
             </tr>
     </ng-container>

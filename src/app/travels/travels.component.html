@@ -1,43 +1,42 @@
-<div class="row">
-  <div class="col-md-12">
-    <form [formGroup]="this.travelService.form" (ngSubmit)="onSubmit()">
-      <input type="hidden" formControlName="$key">
-      <div class="form-group">
-        <label class="lead font-weight-bold">Task name</label>
-        <!-- we will add this class is-invalid with the help of [ngClass] directive
-                            this class will be applied when the form is submitted and we have a validation error regarding full name -->
-        <input formControlName="taskName" class="form-control"
-          [ngClass]="{'is-invalid':submitted && formControls.taskName.errors}">
-        <!-- now we will add an additional due to show the exact reason for the validation error so here we have the deal with this class invilid-feedback
-                                    only based on the same condition inside that -->
-        <div class="invalid-feedback" *ngIf="submitted && formControls.taskName.errors">This field is required</div>
-      </div>
-      <div class="form-group"><label class="lead font-weight-bold">Start date</label>
-        <input matInput [matDatepicker]="picker1" placeholder="Choose a date" formControlName="startDate" class="form-control"
-          [ngClass]="{'is-invalid':submitted && formControls.startDate.errors}">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-        <div class="invalid-feedback" *ngIf="submitted && formControls.startDate.errors">This field is required</div>
-      </div>
+<div class="container mt-5">
+<h2 class="text-center mt-5 mb-3">Save your travels</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <form class="row flex-wrap justify-content-around" [formGroup]="this.travelService.form" (ngSubmit)="onSubmit()">
+        <input type="hidden" formControlName="$key">
+        <div class="form-group col-4">
+          <label class="lead font-weight-bold">Destination name</label>
+          <input formControlName="destination" class="form-control"
+            [ngClass]="{'is-invalid':submitted && formControls.destination.errors}">
+          <div class="invalid-feedback" *ngIf="submitted && formControls.destination.errors">This field is required</div>
+        </div><div class="form-group col-4">
+          <label class="lead font-weight-bold">Start date</label>
+          <input formControlName="startDate" class="form-control"
+            [ngClass]="{'is-invalid':submitted && formControls.startDate.errors}">
+          <div class="invalid-feedback" *ngIf="submitted && formControls.startDate.errors">This field is required</div>
+        </div><div class="form-group col-4">
+          <label class="lead font-weight-bold">End date</label>
+          <input formControlName="endDate" class="form-control"
+            [ngClass]="{'is-invalid':submitted && formControls.endDate.errors}">
+          <div class="invalid-feedback" *ngIf="submitted && formControls.endDate.errors">This field is required</div>
+        </div>
+        <div class="form-group col-12 p-3">
+          <label class="lead font-weight-bold">Rate your travel</label>
+          <input formControlName="rating" class="form-control"
+            [ngClass]="{'is-invalid':submitted && formControls.rating.errors}">
+          <div class="invalid-feedback" *ngIf="submitted && formControls.rating.errors">This field is required</div>
+        </div>
 
-      <div class="form-group"><label class="lead font-weight-bold">End date</label>
-        <input matInput [matDatepicker]="picker2" placeholder="Choose a date" formControlName="endDate" class="form-control"
-          [ngClass]="{'is-invalid':submitted && formControls.endDate.errors}">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-        <div class="invalid-feedback" *ngIf="submitted && formControls.endDate.errors">This field is required</div>
-      </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-success" value="Submit">
+        </div>
+      </form>
 
-      <div class="form-group">
-        <input type="submit" class="btn btn-success" value="Submit">
-      </div>
-    </form>
+    </div>
+    <div class="col-md-12">
+      <app-todo-list>
 
-
-  </div>
-  <div class="col-md-12">
-    <app-todo-list>
-
-    </app-todo-list>
+      </app-todo-list>
+    </div>
   </div>
 </div>

@@ -8,38 +8,41 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 export class TravelService {
 
   constructor(private firebase: AngularFireDatabase) { }
-  taskList: AngularFireList<any>;
+  
+  travelList: AngularFireList<any>;
   form = new FormGroup({
     $key: new FormControl(null),
-    taskName: new FormControl('', Validators.required),
+    destination: new FormControl('', Validators.required),
     startDate: new FormControl('', Validators.required),
     endDate:  new FormControl('', Validators.required),
+    rating:  new FormControl('', Validators.required),
   });
 
   getTravels() {
-    this.taskList = this.firebase.list('tasks');
-    return this.taskList.snapshotChanges();
+    this.travelList = this.firebase.list('travels');
+    return this.travelList.snapshotChanges();
   }
-  insertTravel(task) {
-    this.taskList.push({
-      taskName: task.taskName,
-      startDate: task.startDate,
-      endDate: task.endDate,
+  insertTravel(dest) {
+    this.travelList.push({
+      destination: dest.destination,
+      startDate: dest.startDate,
+      endDate: dest.endDate,
+      rating: dest.rating,
     });
   }
-
-  populateForm(task) {
-    this.form.setValue(task);
+  populateForm(dest) {
+    this.form.setValue(dest);
   }
-  updateTravel(task) {
-    this.taskList.update(task.$key, {
-      taskName: task.taskName,
-      startDate: task.startDate,
-      endDate: task.endDate,
+  updateTravel(dest) {
+    this.travelList.update(dest.$key, {
+      destination: dest.destination,
+      startDate: dest.startDate,
+      endDate: dest.endDate,
+      rating: dest.rating,
     });
   }
   deleteTravel($key: string){
-    this.taskList.remove($key);
+    this.travelList.remove($key);
   }
 }
 

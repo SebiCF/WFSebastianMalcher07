@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule , FormsModule } from '@angular/forms' ;
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
@@ -14,16 +13,7 @@ import { TravelService } from './shared/travels.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { BlogpageComponent } from './blogpage/blogpage.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatNativeDateModule } from '@angular/material';
-import { MatStepperModule } from '@angular/material/stepper';
-
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -38,16 +28,11 @@ import { MatStepperModule } from '@angular/material/stepper';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig), // we called initializeApp function to provide connection details
-    AngularFireDatabaseModule, // we will import the classes here too
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
     FormsModule,
-    MatDatepickerModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatStepperModule,
   ],
-  providers: [TravelService, MatNativeDateModule],
+  providers: [TravelService],
   
   bootstrap: [AppComponent]
  })
